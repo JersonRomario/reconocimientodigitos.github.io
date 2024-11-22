@@ -1,0 +1,19 @@
+/* Ajustar tamaño de los logos */
+.navbar-brand img {
+    width: 40px; /* Tamaño del logo de la universidad */
+    height: auto;
+}
+
+.d-flex img {
+    width: 40px; /* Tamaño del logo de la facultad */
+    height: auto;
+}
+
+/* Añadir algo de separación entre los elementos */
+.navbar-brand {
+    font-size: 1.1em; /* Ajuste de tamaño de fuente para la universidad */
+}
+
+.d-flex {
+    font-size: 1.1em; /* Ajuste de tamaño de fuente para la facultad */
+}

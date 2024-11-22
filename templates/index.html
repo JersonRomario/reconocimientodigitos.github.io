@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconocimiento de Dígitos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('{{ url_for("static", filename="imagenes/biblioteca.jpg") }}');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .navbar {
+            font-family: 'Roboto', sans-serif;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img, .navbar-text img {
+            width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .navbar .container-fluid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: #FF6F61;
+            color: white;
+        }
+
+        button:active {
+            background-color: #F4511E;
+        }
+
+        #prediction {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        #error-message {
+            font-size: 1.2rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #FFD700;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+
+            .navbar-text {
+                font-size: 1.2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 2rem;
+            }
+
+            button {
+                font-size: 1rem;
+            }
+
+            #canvas {
+                width: 240px;
+                height: 240px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-brand {
+                font-size: 1rem;
+            }
+
+            .navbar-text {
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+            }
+
+            #canvas {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="{{ url_for('static', filename='imagenes/unap.png') }}" alt="Logo UNAP">
+                Universidad Nacional del Altiplano de Puno
+            </a>
+            <div class="navbar-text d-flex align-items-center">
+                <span>Facultad de Ingeniería Estadística e Informática</span>
+                <img src="{{ url_for('static', filename='imagenes/finesi.png') }}" alt="Logo Facultad" style="width: 110px;">
+            </div>
+        </div>
+    </nav>
+
+    <div class="container text-center py-5">
+        <h1>Reconocimiento de Dígitos</h1>
+        <div class="my-4">
+            <canvas id="canvas" width="280" height="280" class="border rounded"></canvas>
+        </div>
+        <div id="controls" class="my-4">
+            <button onclick="clearCanvas()" class="btn btn-danger mx-2">Borrar</button>
+            <button onclick="predict()" class="btn btn-success mx-2">Predecir</button>
+        </div>
+        <p id="prediction" class="fs-4 text-secondary mt-3">Predicción: <strong>?</strong></p>
+        <p id="error-message" class="text-danger mt-2"></p>
+    </div>
+
+    <footer>
+        <p>By Jerson Romario Gomez Cahuana</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
